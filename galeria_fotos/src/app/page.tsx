@@ -1,49 +1,13 @@
-"use client"
-import { Modal } from "@/components/Modal";
-import { PhotoItem } from "@/components/PhotoItem";
-import { photoList } from "@/data/photoList";
-import { useState } from "react";
+import { photoData } from "./data/photoData";
 
-export default function Home() {
-
-  const [showModal, setShowModal] = useState(false);
-  const [imageOfModal, setImageOfModal] = useState("");
-  
-  const openModal = (id:number) => {
-    const photo = photoList.find(item =>{
-      if(item.id === id)
-        return true;
-      else{
-        return false;
-      }
-    })
-    if (photo) {
-      setImageOfModal(photo.url);
-      setShowModal(true)
-    }
-  }
-
-  const closeModal = () => {
-    setShowModal(false)
-  }
-
+export default function page () {
   return (
- 
-    <div className="mx-2">
-     <h1 className="text-center text-3xl font-bold my-10">Fotos intergalaticas</h1>
-
-     <section className="container max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-      {photoList.map(item => (
-        <PhotoItem
-          key={item.id}
-          photo={item}
-          onClick={() => openModal(item.id)}
-        />
-      ))} 
-     </section>
-     {showModal &&
-     <Modal image={imageOfModal} closeModal={closeModal}/>
-    }
+    <div className="w-screen h-screen bg-black text-white font-bold text-3xl flex items-center flex-col">
+      <p className="pt-8 pb-8">Fotos intergaláticas</p>
+      <div className="grid grid-cols-3 gap-4">
+        {photoData.map((item) =>
+          <img key={item.id} src={item.image}/>)}
+      </div>
     </div>
-  );
+  )
 }
