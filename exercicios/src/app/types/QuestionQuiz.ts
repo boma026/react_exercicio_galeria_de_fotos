@@ -1,7 +1,8 @@
-import { Options } from "./options";
+import { Options } from "./Options";
 
 export type QuestionQuiz = {
     id:number,
     title:string,
-    options:Options[],
+    options:string[],
+    answer:number
 }
